@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html data-bs-theme="auto">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Projects - Brand</title>
+    <script>
+        (function() {
+
+            // JavaScript snippet handling Dark/Light mode switching
+
+            const getStoredTheme = () => localStorage.getItem('theme');
+            const setStoredTheme = theme => localStorage.setItem('theme', theme);
+            const forcedTheme = document.documentElement.getAttribute('data-bss-forced-theme');
+
+            const getPreferredTheme = () => {
+
+                if (forcedTheme) return forcedTheme;
+
+                const storedTheme = getStoredTheme();
+                if (storedTheme) {
+                    return storedTheme;
+                }
+
+                const pageTheme = document.documentElement.getAttribute('data-bs-theme');
+
+                if (pageTheme) {
+                    return pageTheme;
+                }
+
+                return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+
+            const setTheme = theme => {
+                if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.documentElement.setAttribute('data-bs-theme', 'dark');
+                } else {
+                    document.documentElement.setAttribute('data-bs-theme', theme);
+                }
+            }
+
+            setTheme(getPreferredTheme());
+
+            const showActiveTheme = (theme, focus = false) => {
+                const themeSwitchers = [].slice.call(document.querySelectorAll('.theme-switcher'));
+
+                if (!themeSwitchers.length) return;
+
+                document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+                    element.classList.remove('active');
+                    element.setAttribute('aria-pressed', 'false');
+                });
+
+                for (const themeSwitcher of themeSwitchers) {
+
+                    const btnToActivate = themeSwitcher.querySelector('[data-bs-theme-value="' + theme + '"]');
+
+                    if (btnToActivate) {
+                        btnToActivate.classList.add('active');
+                        btnToActivate.setAttribute('aria-pressed', 'true');
+                    }
+                }
+            }
+
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+                const storedTheme = getStoredTheme();
+                if (storedTheme !== 'light' && storedTheme !== 'dark') {
+                    setTheme(getPreferredTheme());
+                }
+            });
+
+            window.addEventListener('DOMContentLoaded', () => {
+                showActiveTheme(getPreferredTheme());
+
+                document.querySelectorAll('[data-bs-theme-value]')
+                    .forEach(toggle => {
+                        toggle.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const theme = toggle.getAttribute('data-bs-theme-value');
+                            setStoredTheme(theme);
+                            setTheme(theme);
+                            showActiveTheme(theme);
+                        })
+                    })
+            });
+        })();
+    </script>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700&amp;display=swap">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/pikaday.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top portfolio-navbar gradient navbar-dark">
+        <div class="container"><a class="navbar-brand logo" href="#">unlock.com.tw</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navbarNav"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">首頁</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="frp.html">繞過APK檔案</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cv.html">賣場與粉專</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="page projets-page">
+        <section class="portfolio-block project-no-images">
+            <div class="container">
+                <div class="heading">
+                    <h2>APK 檔案| FRP - BYPASS 繞過</h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="project-card-no-image">
+                            <div class="row">
+                                <div class="col-auto align-self-center">
+                                    <picture><img class="rounded" src="assets/img/icons/settings.png"></picture>
+                                </div>
+                                <div class="col align-self-center">
+                                    <h3 style="padding-bottom: 0px;margin-bottom: 0px;">Setting</h3>
+                                </div>
+                                <div class="col-auto align-self-center me-auto"><a class="btn btn-outline-primary" role="button" href="intent://com.android.settings/#Intent;scheme=android-app;end" rel="next">啟動</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="project-card-no-image">
+                            <div class="row">
+                                <div class="col-auto align-self-center">
+                                    <picture><img class="rounded" src="assets/img/icons/lockscreen.png"></picture>
+                                </div>
+                                <div class="col align-self-center">
+                                    <h3 style="padding-bottom: 0px;margin-bottom: 0px;">Screen Smartlock</h3>
+                                </div>
+                                <div class="col-auto align-self-center me-auto"><a class="btn btn-outline-primary" role="button" href="intent://com.google.android.gms/#Intent;scheme=promote_smartlock_scheme;end" rel="next">啟動</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="project-card-no-image">
+                            <div class="row">
+                                <div class="col-auto align-self-center">
+                                    <picture><img class="rounded" src="assets/img/icons/chrome.png"></picture>
+                                </div>
+                                <div class="col align-self-center">
+                                    <h3 style="padding-bottom: 0px;margin-bottom: 0px;">Chrome</h3>
+                                </div>
+                                <div class="col-auto align-self-center me-auto"><a class="btn btn-outline-primary" role="button" href="intent://com.android.chrome/#Intent;scheme=android-app;end" rel="next">啟動</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="project-card-no-image">
+                            <div class="row">
+                                <div class="col-auto align-self-center">
+                                    <picture><img class="rounded" src="assets/img/icons/galaxy-appstore.png"></picture>
+                                </div>
+                                <div class="col align-self-center">
+                                    <h3 style="padding-bottom: 0px;margin-bottom: 0px;">Galaxy Store</h3>
+                                </div>
+                                <div class="col-auto align-self-center me-auto"><a class="btn btn-outline-primary" role="button" href="intent://com.sec.android.app.samsungapps/#Intent;scheme=android-app;end" rel="next">啟動</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="project-card-no-image">
+                            <div class="row">
+                                <div class="col-auto align-self-center">
+                                    <picture><img class="rounded" src="assets/img/icons/phone.png"></picture>
+                                </div>
+                                <div class="col align-self-center">
+                                    <h3 style="padding-bottom: 0px;margin-bottom: 0px;">*#0*#</h3>
+                                </div>
+                                <div class="col-auto align-self-center me-auto"><a class="btn btn-outline-primary" role="button" href="tel:*#0*#/#Intent;scheme=android-app;end" rel="next">啟動</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="heading" style="margin-top: 0px;padding-bottom: 0px;margin-bottom: 20px;"></div>
+                <div class="row">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="project-card-no-image">
+                            <div class="row">
+                                <div class="col-auto align-self-center">
+                                    <picture><img class="rounded" src="assets/img/icons/app.png"></picture>
+                                </div>
+                                <div class="col align-self-center">
+                                    <h3 style="padding-bottom: 0px;margin-bottom: 0px;">FRP_Bypass</h3>
+                                </div>
+                                <div class="col-auto align-self-center me-auto"><a class="btn btn-outline-primary" role="button" href="intent://com.android.settings/#Intent;scheme=android-app;end" rel="next">下載</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="project-card-no-image">
+                            <div class="row">
+                                <div class="col-auto align-self-center">
+                                    <picture><img class="rounded" src="assets/img/icons/account.png"></picture>
+                                </div>
+                                <div class="col align-self-center">
+                                    <h3 style="padding-bottom: 0px;margin-bottom: 0px;">安卓5_GAM</h3>
+                                </div>
+                                <div class="col-auto align-self-center me-auto"><a class="btn btn-outline-primary" role="button" href="intent://com.google.android.gms/#Intent;scheme=promote_smartlock_scheme;end" rel="next">下載</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="project-card-no-image">
+                            <div class="row">
+                                <div class="col-auto align-self-center">
+                                    <picture><img class="rounded" src="assets/img/icons/account.png"></picture>
+                                </div>
+                                <div class="col align-self-center">
+                                    <h3 style="padding-bottom: 0px;margin-bottom: 0px;">安卓6,8,9,10_GAM</h3>
+                                </div>
+                                <div class="col-auto align-self-center me-auto"><a class="btn btn-outline-primary" role="button" href="intent://com.android.chrome/#Intent;scheme=android-app;end" rel="next">下載</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="project-card-no-image">
+                            <div class="row">
+                                <div class="col-auto align-self-center">
+                                    <picture><img class="rounded" src="assets/img/icons/QuickShortcutMaker.png"></picture>
+                                </div>
+                                <div class="col align-self-center">
+                                    <h3 style="padding-bottom: 0px;margin-bottom: 0px;">QuickShortcutMaker</h3>
+                                </div>
+                                <div class="col-auto align-self-center me-auto"><a class="btn btn-outline-primary" role="button" href="intent://com.sec.android.app.samsungapps/#Intent;scheme=android-app;end" rel="next">下載</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="page-footer py-3 border-top">
+        <div class="container my-4">
+            <div class="links"><a href="#">聯絡我</a></div>
+            <div class="social-icons"><a class="me-3" href="https://www.facebook.com/android.flash.factory"><i class="icon ion-social-facebook"></i></a><a class="me-3" href="https://shopee.tw/luokey"><i class="icon ion-bag"></i></a></div>
+        </div>
+    </footer>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/pikaday.min.js"></script>
+    <script src="assets/js/theme.js"></script>
+</body>
+
+</html>

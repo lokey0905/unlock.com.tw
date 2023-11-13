@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html data-bs-theme="auto">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Brand</title>
+    <script>
+        (function() {
+
+            // JavaScript snippet handling Dark/Light mode switching
+
+            const getStoredTheme = () => localStorage.getItem('theme');
+            const setStoredTheme = theme => localStorage.setItem('theme', theme);
+            const forcedTheme = document.documentElement.getAttribute('data-bss-forced-theme');
+
+            const getPreferredTheme = () => {
+
+                if (forcedTheme) return forcedTheme;
+
+                const storedTheme = getStoredTheme();
+                if (storedTheme) {
+                    return storedTheme;
+                }
+
+                const pageTheme = document.documentElement.getAttribute('data-bs-theme');
+
+                if (pageTheme) {
+                    return pageTheme;
+                }
+
+                return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+
+            const setTheme = theme => {
+                if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.documentElement.setAttribute('data-bs-theme', 'dark');
+                } else {
+                    document.documentElement.setAttribute('data-bs-theme', theme);
+                }
+            }
+
+            setTheme(getPreferredTheme());
+
+            const showActiveTheme = (theme, focus = false) => {
+                const themeSwitchers = [].slice.call(document.querySelectorAll('.theme-switcher'));
+
+                if (!themeSwitchers.length) return;
+
+                document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+                    element.classList.remove('active');
+                    element.setAttribute('aria-pressed', 'false');
+                });
+
+                for (const themeSwitcher of themeSwitchers) {
+
+                    const btnToActivate = themeSwitcher.querySelector('[data-bs-theme-value="' + theme + '"]');
+
+                    if (btnToActivate) {
+                        btnToActivate.classList.add('active');
+                        btnToActivate.setAttribute('aria-pressed', 'true');
+                    }
+                }
+            }
+
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+                const storedTheme = getStoredTheme();
+                if (storedTheme !== 'light' && storedTheme !== 'dark') {
+                    setTheme(getPreferredTheme());
+                }
+            });
+
+            window.addEventListener('DOMContentLoaded', () => {
+                showActiveTheme(getPreferredTheme());
+
+                document.querySelectorAll('[data-bs-theme-value]')
+                    .forEach(toggle => {
+                        toggle.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const theme = toggle.getAttribute('data-bs-theme-value');
+                            setStoredTheme(theme);
+                            setTheme(theme);
+                            showActiveTheme(theme);
+                        })
+                    })
+            });
+        })();
+    </script>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700&amp;display=swap">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/pikaday.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top portfolio-navbar gradient navbar-dark">
+        <div class="container"><a class="navbar-brand logo" href="#">unlock.com.tw</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navbarNav"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">首頁</a></li>
+                    <li class="nav-item"><a class="nav-link" href="frp.html">繞過APK檔案</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cv.html">賣場與粉專</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="page lanidng-page">
+        <section class="portfolio-block block-intro">
+            <div class="container">
+                <div class="about-me">
+                    <p>歡迎來到老K刷機工廠！我們擁有專業的技術團隊，為您提供最好的手機刷機服務，包括Android手機刷機，手機忘記密碼密碼鎖解鎖，手機Google帳號鎖，小米帳號鎖，三星帳號鎖解鎖等。此外，我們還提供Android手機root Magisk服務，以及刷飛人手機，修改定位等服務。如果你需要外送修改定位或上班遠距打卡服務，我們也能夠為你解決問題。無論你是需要解鎖，刷機還是修改定位，刷機工廠都能夠滿足你的需求！我們秉承著專業、安全、快速的服務宗旨，為您提供最滿意的手機刷機服務。</p><a class="btn btn-outline-primary" role="button" href="#">查看服務</a>
+                </div>
+            </div>
+        </section>
+        <section class="portfolio-block photography">
+            <div class="container">
+                <div class="row g-0">
+                    <div class="col-md-6 col-lg-4 item zoom-on-hover"><a href="#"><img class="img-fluid image" src="assets/img/nature/image5.jpg"></a></div>
+                    <div class="col-md-6 col-lg-4 item zoom-on-hover"><a href="#"><img class="img-fluid image" src="assets/img/nature/image2.jpg"></a></div>
+                    <div class="col-md-6 col-lg-4 item zoom-on-hover"><a href="#"><img class="img-fluid image" src="assets/img/tech/image4.jpg"></a></div>
+                </div>
+            </div>
+        </section>
+        <section class="portfolio-block call-to-action border-bottom">
+            <div class="container">
+                <div class="d-flex justify-content-center align-items-center content">
+                    <h3>Like what you see?</h3><button class="btn btn-outline-primary btn-lg" type="button">Hire me</button>
+                </div>
+            </div>
+        </section>
+        <section class="portfolio-block skills">
+            <div class="container">
+                <div class="heading">
+                    <h2>服務項目</h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card special-skill-item border-0">
+                            <div class="card-header bg-transparent border-0"><i class="icon ion-android-unlock"></i></div>
+                            <div class="card-body">
+                                <h3 class="card-title">裝置解鎖服務</h3>
+                                <p class="card-text">Android 密碼鎖<br>FRP Google 帳號鎖<br>Samsung 三星帳號鎖<br>Xiaomi MIUI 小米帳號鎖</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card special-skill-item border-0">
+                            <div class="card-header bg-transparent border-0"><i class="icon ion-android-locate"></i></div>
+                            <div class="card-body">
+                                <h3 class="card-title">遊戲飛人 外送,打卡改定位</h3>
+                                <p class="card-text">寶可夢飛人<br>魔物獵人飛人<br>上班打卡修改定位<br>外送搶單轉單改定位</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card special-skill-item border-0">
+                            <div class="card-header bg-transparent border-0"><i class="icon ion-ios-gear-outline"></i></div>
+                            <div class="card-body">
+                                <h3 class="card-title">Android Root</h3>
+                                <p class="card-text">Root Android設備<br>幸運破解器<br>GG遊戲修改器<br>手機NFC模擬門禁卡<br>模擬Pixel無限上傳相簿</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <section class="portfolio-block website gradient">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-12 col-lg-5 offset-lg-1 text">
+                    <h3>Website Project</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget velit ultricies, feugiat est sed, efr nunc, vivamus vel accumsan dui. Quisque ac dolor cursus, volutpat nisl vel, porttitor eros.</p>
+                </div>
+                <div class="col-md-12 col-lg-5">
+                    <div class="portfolio-laptop-mockup">
+                        <div class="screen">
+                            <div class="screen-content" style="background-image:url(&quot;assets/img/tech/image6.png&quot;);"></div>
+                        </div>
+                        <div class="keyboard"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="page-footer py-3 border-top">
+        <div class="container my-4">
+            <div class="links"><a href="#">聯絡我</a></div>
+            <div class="social-icons"><a class="me-3" href="https://www.facebook.com/android.flash.factory"><i class="icon ion-social-facebook"></i></a><a class="me-3" href="https://shopee.tw/luokey"><i class="icon ion-bag"></i></a></div>
+        </div>
+    </footer>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/pikaday.min.js"></script>
+    <script src="assets/js/theme.js"></script>
+</body>
+
+</html>
